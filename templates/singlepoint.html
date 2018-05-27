@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load staticfiles %}
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>单通道点数据分析</title>
+<style type="text/css">
+<!--
+.STYLE1 {
+	font-size: 16px;
+	/*font-family: "新宋体";*/
+	font-weight: bold;
+}
+.STYLE3 {font-size: 18px; font-weight: bold; }
+-->
+</style>
+<link rel="favicon" href="{% static 'images/favicon.png' %}">
+  <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+  <!-- Custom styles for our template -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}" media="screen">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="static/js/html5shiv.js"></script>
+  <script src="static/js/respond.min.js"></script>
+</head>
+<!---->
+<script type="text/javascript">
+     function link_to(address) {
+		 window.location.href=address;
+     }
+</script>
+
+
+
+</head>
+<body>
+<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="index.html">
+					<img src="{% static 'images/logo.png' %}" alt="Techro HTML5 template"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right mainNav">
+								<!--<ul class="nav navbar-nav pull-right mainNav">-->
+					<li><a href="/index">主页</a></li>
+					<li><a href="/products">产品中心</a></li>
+					<li><a href="/dataset">数据中心</a></li>
+					<li><a href="/contact">联系我们</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+	<!-- /.navbar -->
+
+	<header id="head" class="secondary">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8">
+					<h3>单通道点数据分析</h3>
+				</div>
+			</div>
+		</div>
+	</header>
+
+
+
+<form id="form_total" name="form_total" method="post" action="" enctype="multipart/form-data">
+	{% csrf_token %}
+<table width="1250" border="0" cellpadding="0" cellspacing="0">
+  <!--DWLayoutTable-->
+  <tr>
+    <td width="65" height="39">&nbsp;</td>
+    <td colspan="2" valign="top">
+
+      <label>
+        <!--<div align="left"><span class="STYLE3">单通道点数据分析</span></div>-->
+        </label>
+    </td>
+    <!--<td width="100" valign="top"><span class="STYLE3"><a href="index.html">返回首页</a></span></td>-->
+    <td width="151">&nbsp;</td>
+    <td width="149">&nbsp;</td>
+    <td width="149">&nbsp;</td>
+    <td width="300">&nbsp;</td>
+    <td width="160">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="13">&nbsp;</td>
+    <td colspan="7" valign="top"><hr /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="19">&nbsp;</td>
+    <td width="150">&nbsp;</td>
+    <td width="26">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  
+  
+  
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td valign="top"><span class="STYLE1">选择模型：</span></td>
+    <td colspan="6" rowspan="2" valign="top">
+
+      <label>
+      <input type="checkbox" name="checkbox_models" value="DTW_KNN" />
+      DTW_KNN</label>
+      <label>
+      <input type="checkbox" name="checkbox_models" value="Euclidean_KNN" />
+     Euclidean_KNN</label>
+      <label>
+      <input type="checkbox" name="checkbox_models" value="LSTM_FCN" />
+      LSTM_FCN</label>
+
+
+   </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td height="16">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td valign="top"><span class="STYLE1">上传模型：</span></td>
+    <td colspan="4" valign="top">
+
+      <label>
+        <input type="file" name="upload_model" />
+        </label>
+
+</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="14">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td valign="top"><span class="STYLE1">选择测试文件：</span></td>
+    <td colspan="6" rowspan="2" valign="top">
+
+      <label>
+      <input type="checkbox" name="checkbox_files" value="Adiac" />
+      Adiac</label>
+      <label>
+      <input type="checkbox" name="checkbox_files" value="synthetic_control" />
+      synthetic_control</label>
+      <label>
+      <input type="checkbox" name="checkbox_files" value="ArrowHead" />
+      ArrowHead</label>
+      <label>
+      <input type="checkbox" name="checkbox_files" value="50words" />
+      50words</label>
+		<input type="checkbox" name="checkbox_files" value="Beef" />
+      Beef</label>
+
+</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  
+  
+  
+  <tr>
+    <td height="26">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td valign="top"><span class="STYLE1">上传测试文件：</span></td>
+    <td colspan="4" valign="top">
+
+      <label>
+        <input type="file" name="upload_file" />
+        </label>
+
+</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="35">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="36">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td valign="top">
+
+
+
+{#	<label>#}
+{#		<button name='button' type="button" class="btn btn-default" onclick="submit_query()" >开始分析</button>#}
+{#	</label>#}
+	  <input name="submit" type="submit" class="button" id="submit" value="开始分析" />
+	</td>
+    <td valign="top">
+      <label></label>
+      <input name="reset" type="reset" class="button" id="reset" value="重置" />
+	</td>
+    <td>
+{#		<button name='button' type="button" class="button" onclick="submit_query()">查看进度</button>#}
+	</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+	  <th height="172" colspan="10" >
+{#	  <div id="prog_out" class="progress">#}
+{#    	<div id="prog_in" class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">#}
+{#			<span class="sr-only">90% complete</span>#}
+{#    	</div>#}
+{#	</div>#}
+	  </th>
+  </tr>
+</table>
+</form>
+
+
+
+
+<footer id="footer">
+    <div class="container">
+        <!--<div class="social text-center">-->
+            <!--<a href="#"><i class="fa fa-twitter"></i></a>-->
+            <!--<a href="#"><i class="fa fa-facebook"></i></a>-->
+            <!--<a href="#"><i class="fa fa-dribbble"></i></a>-->
+            <!--<a href="#"><i class="fa fa-flickr"></i></a>-->
+            <!--<a href="#"><i class="fa fa-github"></i></a>-->
+        <!--</div>-->
+
+        <!--<div class="clear"></div>-->
+        <!--CLEAR FLOATS-->
+    </div>
+    <div class="footer2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 panel">
+                    <div class="panel-body">
+                        <p class="simplenav">
+                            <a href="/index">主页</a> |
+                            <a href="/products">产品中心</a> |
+                            <a href="/dataset">数据中心</a> |
+                            <a href="/contact">联系我们</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 panel">
+                    <div class="panel-body">
+                        <p class="text-right">
+                            Copyright &copy; 2018.ICES, Hitsz All rights reserved.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /row of panels -->
+        </div>
+    </div>
+</footer>
+
+
+
+
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+{#<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">#}
+{#<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>#}
+{#<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+{#<script src="{% static 'js/bar.js' %}"></script>#}
+</body>
+</html>
